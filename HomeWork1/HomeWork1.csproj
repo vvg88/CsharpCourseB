@@ -46,6 +46,8 @@
     <Compile Include="Addition.cs" />
     <Compile Include="Division.cs" />
     <Compile Include="IMathOperation.cs" />
+    <Compile Include="MathOperation.cs" />
+    <Compile Include="MathOperationResult.cs" />
     <Compile Include="Multiplication.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
