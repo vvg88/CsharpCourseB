@@ -156,6 +156,43 @@ namespace HomeWork1
             return result;
         }
 
+        private static IList<object> ParseExpression(string expression)
+        {
+            List<object> expItemsList = new List<object>();
+            // Убрать лишние пробелы
+            var expressionBuilder = new StringBuilder(expression);
+            for (int i = 0; i < expressionBuilder.Length; i++)
+            {
+                if (expressionBuilder[i] == ' ')
+                    expressionBuilder.Remove(i, 1);
+            }
+            // Откорректировать е-
+            expression = expression.ReplaceIfContains("e-", "e_");
+
+            for (int i = 0; i < expressionBuilder.Length; i++)
+            {
+                if (char.IsDigit(expressionBuilder[i]))
+                {
+                    var numBuilder = new StringBuilder(expressionBuilder[i++]);
+                    while (char.IsDigit(expressionBuilder[i])
+                            || (expressionBuilder[i] == 'e')
+                            || (expressionBuilder[i] == '_')
+                            || (expressionBuilder[i] == '.')
+                            || (expressionBuilder[i] == ','))
+                    {
+                        numBuilder.Append(expressionBuilder[i++]);
+                    }
+                    var number = 0.0;
+                    var correctNumStr = numBuilder.ToString().ReplaceIfContains("e_", "e-");
+                    double.TryParse(correctNumStr, out number);
+                    expItemsList.Add(number);
+                }
+                if ()
+            }
+
+            throw new NotImplementedException();
+        }
+
         private static double SolveExpWithBrackets(StringBuilder expression)
         {
             var newExpression = new StringBuilder();
