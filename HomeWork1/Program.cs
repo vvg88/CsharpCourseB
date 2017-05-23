@@ -17,44 +17,30 @@ namespace HomeWork1
             {
                 new Addition(), new Subtraction(), new Multiplication(), new Division()
             };
-            var availableOpsSymbs = availableOperations.Select(mathOp => mathOp.OparationChar).ToArray();
 
             do
             {
                 Console.WriteLine("Введите выражение:");
                 var inputedString = Console.ReadLine();
+                inputedString = new StringBuilder(inputedString).Replace(" ", string.Empty)     // Удалить пробелы, заменить точки на запятые
+                                                                .Replace(".", ",").ToString();
+                var availableOpsSymbs = availableOperations.Select(mathOp => mathOp.OparationChar).ToArray();
                 if (CheckExpression(inputedString, availableOpsSymbs))
                 {
-                    //var modifiedString = inputedString.ReplaceIfContains("e-", "e_");
+                    try
+                    {
+                        var parsedExpression = ParseExpression(inputedString);
+                        var result = SolveExpWithBrackets(parsedExpression);
 
-                    //var digitsStr = modifiedString.Split(availableOpsSymbs, StringSplitOptions.RemoveEmptyEntries);
-                    //var operationSymbs = modifiedString.Where(opSymb => availableOpsSymbs.Contains(opSymb)).ToArray();
-
-                    //var digits = digitsStr.Select(digit =>
-                    //{
-                    //    digit = digit.ReplaceIfContains("e_", "e-");
-                    //    double res;
-                    //    if (digit.Contains('.'))
-                    //        res = double.Parse(digit, NumberStyles.Any, CultureInfo.InvariantCulture);
-                    //    else
-                    //        res = double.Parse(digit, NumberStyles.Any, CultureInfo.CurrentCulture);
-                    //    return new MathOperationResult(res);
-                    //}).ToArray();
-
-                    //List<object> expressionItems = new List<object>(digits.Length * 2 + 1);
-                    //for (int i = 0; i < digits.Length; i++)
-                    //{
-                    //    expressionItems.Add(digits[i]);
-                    //    if (i < digits.Length - 1)
-                    //    {
-                    //        expressionItems.Add(availableOperations.FirstOrDefault(operation => operation.OparationChar == operationSymbs[i]));
-                    //    }
-                    //}
-                    //var result = SolveExpression(expressionItems);
-                    if (!double.IsNaN(result))
-                        Console.WriteLine(inputedString + $" = {result}");
-                    else
-                        Console.WriteLine("В расчете возникла ошибка!");
+                        if (!double.IsNaN(result))
+                            Console.WriteLine(inputedString + $" = {result}");
+                        else
+                            Console.WriteLine("В расчете возникла ошибка!");
+                    }
+                    catch (Exception exc)
+                    {
+                        Console.WriteLine("В процессе расчета возникло исключение: " + exc.Message);
+                    }
                 }
                 else
                 {
@@ -67,23 +53,23 @@ namespace HomeWork1
 
         private static bool CheckExpression(string checkedStr, char[] opSymbs)
         {
-            if (checkedStr.Count(symb => symb == '(') != checkedStr.Count(symb => symb == ')'))
+            if (checkedStr.Count(symb => symb == '(') != checkedStr.Count(symb => symb == ')'))     // Проверить число скобок в выражении
                 return false;
 
-            foreach (var symb in checkedStr)
+            foreach (var symb in checkedStr)        // Проверить символы
             {
                 if (!char.IsDigit(symb)
                     && symb != 'e'
-                    && symb != ' '
-                    && symb != '.'
                     && symb != ','
+                    && symb != '('
+                    && symb != ')'
                     && !opSymbs.Contains(symb))
                     return false;
             }
             return true;
         }
 
-        private static double SolveExpression(IList<object> expression)
+        private static double SolveExpressionNoBrackets(IList<object> expression)
         {
             if (expression.Count == 1)
             {
@@ -102,7 +88,7 @@ namespace HomeWork1
 
             if (SolveOperation(expression, operation))
             {
-                return SolveExpression(expression);
+                return SolveExpressionNoBrackets(expression);
             }
             return double.NaN;
         }
@@ -123,94 +109,71 @@ namespace HomeWork1
             }
             return false;
         }
-
-        private static double SolveExpression(string expression)
+        
+        private static List<object> ParseExpression(string expression)
         {
-            var availableOpsSymbs = availableOperations.Select(mathOp => mathOp.OparationChar).ToArray();
-
-            var modifiedString = expression.ReplaceIfContains("e-", "e_");
-            var digitsStr = modifiedString.Split(availableOpsSymbs, StringSplitOptions.RemoveEmptyEntries);
-            var operationSymbs = modifiedString.Where(opSymb => availableOpsSymbs.Contains(opSymb)).ToArray();
-
-            var digits = digitsStr.Select(digit =>
-            {
-                digit = digit.ReplaceIfContains("e_", "e-");
-                double res;
-                if (digit.Contains('.'))
-                    res = double.Parse(digit, NumberStyles.Any, CultureInfo.InvariantCulture);
-                else
-                    res = double.Parse(digit, NumberStyles.Any, CultureInfo.CurrentCulture);
-                return new MathOperationResult(res);
-            }).ToArray();
-
-            List<object> expressionItems = new List<object>(digits.Length * 2 + 1);
-            for (int i = 0; i < digits.Length; i++)
-            {
-                expressionItems.Add(digits[i]);
-                if (i < digits.Length - 1)
-                {
-                    expressionItems.Add(availableOperations.FirstOrDefault(operation => operation.OparationChar == operationSymbs[i]));
-                }
-            }
-            var result = SolveExpression(expressionItems);
-            return result;
-        }
-
-        private static IList<object> ParseExpression(string expression)
-        {
-            List<object> expItemsList = new List<object>();
-            // Убрать лишние пробелы
-            var expressionBuilder = new StringBuilder(expression);
-            for (int i = 0; i < expressionBuilder.Length; i++)
-            {
-                if (expressionBuilder[i] == ' ')
-                    expressionBuilder.Remove(i, 1);
-            }
-            // Откорректировать е-
+            List<object> expressionItemsList = new List<object>();
             expression = expression.ReplaceIfContains("e-", "e_");
 
-            for (int i = 0; i < expressionBuilder.Length; i++)
-            {
-                if (char.IsDigit(expressionBuilder[i]))
-                {
-                    var numBuilder = new StringBuilder(expressionBuilder[i++]);
-                    while (char.IsDigit(expressionBuilder[i])
-                            || (expressionBuilder[i] == 'e')
-                            || (expressionBuilder[i] == '_')
-                            || (expressionBuilder[i] == '.')
-                            || (expressionBuilder[i] == ','))
-                    {
-                        numBuilder.Append(expressionBuilder[i++]);
-                    }
-                    var number = 0.0;
-                    var correctNumStr = numBuilder.ToString().ReplaceIfContains("e_", "e-");
-                    double.TryParse(correctNumStr, out number);
-                    expItemsList.Add(number);
-                }
-                if ()
-            }
-
-            throw new NotImplementedException();
-        }
-
-        private static double SolveExpWithBrackets(StringBuilder expression)
-        {
-            var newExpression = new StringBuilder();
-            var openBracket = new { Indx = 0, IsFound = false };
             for (int i = 0; i < expression.Length; i++)
             {
-                if (expression[i] == '(')
+                if (char.IsDigit(expression[i]))
                 {
-                    openBracket = new { Indx = i, IsFound = true };
+                    var numBuilder = new StringBuilder();
+                    for (int j = i; j < expression.Length; j++)
+                    {
+                        if (char.IsDigit(expression[j])
+                            || (expression[j] == 'e')
+                            || (expression[j] == '_')
+                            || (expression[j] == '.')
+                            || (expression[j] == ','))
+                        {
+                            numBuilder.Append(expression[j]);
+                            continue;
+                        }
+                        break;
+                    }
+                    var number = 0.0;
+                    var correctNumStr = numBuilder.ReplaceIfContains("e_", "e-");
+                    double.TryParse(correctNumStr.ToString(),  out number);
+                    expressionItemsList.Add(new MathOperationResult(number));
+                    i += numBuilder.Length - 1;
+                    continue;
                 }
-                if (expression[i] == ')' && openBracket.IsFound)
+                if (expression[i] == '(' || expression[i] == ')')
                 {
-                    var stringInBrackets = expression.ToString().Substring(openBracket.Indx + 1, i - openBracket.Indx - 1);
-                    newExpression = new StringBuilder()
+                    expressionItemsList.Add(expression[i]);
+                }
+                if (availableOperations.Any(mathOp => mathOp.OparationChar == expression[i]))
+                {
+                    expressionItemsList.Add(availableOperations.FirstOrDefault(mathOp => mathOp.OparationChar == expression[i]));
                 }
             }
+            return expressionItemsList;
+        }
 
-            throw new NotImplementedException();
+        private static double SolveExpWithBrackets(List<object> expression)
+        {
+            var openBracket = new { Indx = 0, IsFound = false };
+            while (expression.Contains('(') || expression.Contains(')'))
+            {
+                for (int i = 0; i < expression.Count; i++)
+                {
+                    if (expression[i] is char && (char)expression[i] == '(')
+                    {
+                        openBracket = new { Indx = i, IsFound = true };
+                    }
+                    if (expression[i] is char && (char)expression[i] == ')' && openBracket.IsFound)
+                    {
+                        var expressionInBrackets = expression.GetRange(openBracket.Indx + 1, i - openBracket.Indx - 1);
+                        var expressionResult = SolveExpressionNoBrackets(expressionInBrackets);
+                        expression[openBracket.Indx] = new MathOperationResult(expressionResult);
+                        expression.RemoveRange(openBracket.Indx + 1, i - openBracket.Indx);
+                        openBracket = new { Indx = 0, IsFound = false };
+                    }
+                }
+            }
+            return SolveExpressionNoBrackets(expression);
         }
     }
 }

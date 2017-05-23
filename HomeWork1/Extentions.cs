@@ -10,13 +10,15 @@ namespace HomeWork1
     {
         public static string ReplaceIfContains(this string originalStr, string oldSubStr, string newSubStr)
         {
-            var indxOfE = originalStr.IndexOf(oldSubStr, StringComparison.InvariantCultureIgnoreCase);
+            return new StringBuilder(originalStr).ReplaceIfContains(oldSubStr, newSubStr).ToString();
+        }
+
+        public static StringBuilder ReplaceIfContains(this StringBuilder originalStr, string oldSubStr, string newSubStr)
+        {
+            var indxOfE = originalStr.ToString().IndexOf(oldSubStr, StringComparison.InvariantCultureIgnoreCase);
             if (indxOfE != -1)
             {
-                var eMinusStr = originalStr.Substring(indxOfE, 2);
-                var sb = new StringBuilder(originalStr);
-                sb.Replace(eMinusStr, newSubStr);
-                originalStr = sb.ToString();
+                originalStr.Replace(oldSubStr, newSubStr);
             }
             return originalStr;
         }
