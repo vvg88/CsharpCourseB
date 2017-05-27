@@ -7,14 +7,26 @@ using System.Threading.Tasks;
 
 namespace HomeWork2
 {
+    /// <summary>
+    /// Генератор векторов с произвольными координатами
+    /// </summary>
+    /// <typeparam name="T"> Тип координат вектора </typeparam>
     class VectorGenerator<T> : IEnumerable<Vector<T>> where T : struct
     {
+        /// <summary>
+        /// Сгенерированные векторы
+        /// </summary>
         private List<Vector<T>> vectors;
 
+        /// <summary>
+        /// Конструктор генератора
+        /// </summary>
+        /// <param name="vectNum"> Число генерируемых векторов </param>
         public VectorGenerator(int vectNum)
         {
             vectors = new List<Vector<T>>(vectNum);
             var randomGen = new Random();
+            // Сгенерировать векторы с произвольными координатами от -10 до 10
             for (int i = 0; i < vectNum; i++)
             {
                 dynamic x = randomGen.Next(-10, 10);
