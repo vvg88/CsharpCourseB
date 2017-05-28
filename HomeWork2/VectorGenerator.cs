@@ -18,6 +18,8 @@ namespace HomeWork2
         /// </summary>
         private List<Vector<T>> vectors;
 
+        private Random randomGen = new Random();
+
         /// <summary>
         /// Конструктор генератора
         /// </summary>
@@ -25,7 +27,7 @@ namespace HomeWork2
         public VectorGenerator(int vectNum)
         {
             vectors = new List<Vector<T>>(vectNum);
-            var randomGen = new Random();
+            //randomGen = new Random();
             // Сгенерировать векторы с произвольными координатами от -10 до 10
             for (int i = 0; i < vectNum; i++)
             {
@@ -37,7 +39,17 @@ namespace HomeWork2
 
         public IEnumerator<Vector<T>> GetEnumerator()
         {
-            return vectors.GetEnumerator();
+            dynamic x = randomGen.Next(-10, 10);
+            dynamic y = randomGen.Next(-10, 10);
+            yield return new Vector<T>(x, y);
+            yield return new Vector<T>(x, y);
+            yield return new Vector<T>(x, y);
+            yield return new Vector<T>(x, y);
+            yield return new Vector<T>(x, y);
+
+            //foreach (var vect in vectors)
+            //    yield return vect;
+            //return vectors.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
