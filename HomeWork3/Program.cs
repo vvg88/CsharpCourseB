@@ -27,6 +27,13 @@ namespace HomeWork3
             myList.ItemRemoving += (s, e) => Console.WriteLine($"Перед удалением элемента: {e.Item}");
             myList.ItemRemoved += (s, e) => Console.WriteLine($"Элемент {e.Item} удален.");
             myList.Remove(myList.ElementAt(0));
+
+            Console.WriteLine($"Список содержит {myList.Count} элементов.");
+            Console.WriteLine($"Список доступен {(myList.IsReadOnly ? "только для чтения" : "для чтения и записи")}.");
+
+            myList.ListClearing += (s, e) => Console.WriteLine($"Перед очисткой списка.");
+            myList.ListCleared += (s, e) => Console.WriteLine($"Список очищен.");
+            myList.Clear();
         }
     }
 }

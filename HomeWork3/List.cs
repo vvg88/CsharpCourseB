@@ -29,6 +29,15 @@ namespace HomeWork3
         /// </summary>
         public event EventHandler<ItemMovedEventArgs<T>> ItemRemoved;
 
+        /// <summary>
+        /// Событие очистки списка
+        /// </summary>
+        public event EventHandler<ListClearingEventArgs> ListClearing;
+        /// <summary>
+        /// Событие после очистки списка
+        /// </summary>
+        public event EventHandler<EventArgs> ListCleared;
+
         public MyList(IEnumerable<T> list)
         {
             internalList = new List<T>(list);
@@ -71,7 +80,14 @@ namespace HomeWork3
         /// </summary>
         public void Clear()
         {
-            throw new NotImplementedException();
+            var evArg = OnListClearing();
+            if (evArg.Cancel)
+            {
+                Console.WriteLine($"Очистка списка отменена!");
+                return;
+            }
+            internalList.Clear();
+            OnListCleared();
         }
 
         /// <summary>
@@ -122,30 +138,43 @@ namespace HomeWork3
             return this.GetEnumerator();
         }
 
-        private ItemMovingEventArgs<T> OnItemAdding(T item)
+        protected virtual ItemMovingEventArgs<T> OnItemAdding(T item)
         {
             var evArg = new ItemMovingEventArgs<T>(item);
             ItemAdding?.Invoke(this, evArg);
             return evArg;
         }
 
-        private void OnItemAdded(T item)
+        protected virtual void OnItemAdded(T item)
         {
             var evArg = new ItemMovedEventArgs<T>(item);
             ItemAdded?.Invoke(this, evArg);
         }
 
-        private ItemMovingEventArgs<T> OnItemRemoving(T item)
+        protected virtual ItemMovingEventArgs<T> OnItemRemoving(T item)
         {
             var evArg = new ItemMovingEventArgs<T>(item);
             ItemRemoving?.Invoke(this, evArg);
             return evArg;
         }
 
-        private void OnItemRemoved(T item)
+        protected virtual void OnItemRemoved(T item)
         {
             var evArg = new ItemMovedEventArgs<T>(item);
             ItemRemoved?.Invoke(this, evArg);
+        }
+
+        protected virtual ListClearingEventArgs OnListClearing()
+        {
+            var evArg = new ListClearingEventArgs();
+            ListClearing?.Invoke(this, evArg);
+            return evArg;
+        }
+
+        protected virtual void OnListCleared()
+        {
+            var evArg = EventArgs.Empty;
+            ListCleared?.Invoke(this, evArg);
         }
     }
 }
