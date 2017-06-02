@@ -10,7 +10,7 @@ namespace MyNamespace
     {
         public static double Solve()
         {
-            return 
+            return 0; 
         }
     }
 }

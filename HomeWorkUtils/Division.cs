@@ -4,20 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HomeWork1
+namespace HomeWorkUtils
 {
-    class Multiplication : IMathOperation
+    public class Division : IMathOperation
     {
         public char OparationChar { get; }
 
-        public Multiplication()
+        public Division()
         {
-            OparationChar = '*';
+            OparationChar = '/';
         }
 
         public double RunOperation(double leftOp, double rightOp)
         {
-            return leftOp * rightOp;
+            return leftOp / rightOp;
         }
     }
 }

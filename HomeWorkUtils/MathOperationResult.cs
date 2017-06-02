@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HomeWork1
+namespace HomeWorkUtils
 {
-    class MathOperationResult
+    public class MathOperationResult
     {
         private double result;
         public virtual double Result

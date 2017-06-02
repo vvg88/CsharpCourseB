@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A7604C9A-DBD7-4ED5-9015-DB074E318B71}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{19D6244C-E0A7-42D2-9EFD-FAB0E271B0AF}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HomeWork1</RootNamespace>
-    <AssemblyName>HomeWork1</AssemblyName>
+    <RootNamespace>HomeWorkUtils</RootNamespace>
+    <AssemblyName>HomeWorkUtils</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,20 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Calculator.cs" />
-    <Compile Include="Extentions.cs" />
-    <Compile Include="Prog.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Addition.cs" />
+    <Compile Include="Division.cs" />
+    <Compile Include="IMathOperation.cs" />
+    <Compile Include="MathOperation.cs" />
+    <Compile Include="MathOperationResult.cs" />
+    <Compile Include="Multiplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\HomeWorkUtils\HomeWorkUtils.csproj">
-      <Project>{19d6244c-e0a7-42d2-9efd-fab0e271b0af}</Project>
-      <Name>HomeWorkUtils</Name>
-    </ProjectReference>
+    <Compile Include="Subtraction.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

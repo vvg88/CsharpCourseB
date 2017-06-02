@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HomeWork1
+namespace HomeWorkUtils
 {
-    class MathOperation : MathOperationResult
+    public class MathOperation : MathOperationResult
     {
         public double RightOperand { get; }
 
