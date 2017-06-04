@@ -33,8 +33,13 @@ namespace HomeWork4
             }
             while (Console.ReadLine() != "q");
 
-            var someDate = new DateTime(1888, 6, 2);
-            Console.WriteLine($"С даты {someDate} прошло {someDate.Age()} лет.\n");
+            var today = DateTime.Today;
+            var someDate1 = new DateTime(1988, today.Month, today.Day - 1);
+            var someDate2 = new DateTime(1988, today.Month, today.Day);
+            var someDate3 = new DateTime(1988, today.Month, today.Day + 1);
+            Console.WriteLine($"С даты {someDate1} прошло {someDate1.Age()} лет.");
+            Console.WriteLine($"С даты {someDate2} прошло {someDate2.Age()} лет.");
+            Console.WriteLine($"С даты {someDate3} прошло {someDate3.Age()} лет.\n");
 
             Console.WriteLine("Какие-то даты:");
             foreach (var date in GetSomeDates().DatesToStrings())
