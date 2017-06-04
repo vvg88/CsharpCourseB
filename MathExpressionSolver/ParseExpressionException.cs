@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HomeWork4
+namespace MathExpressionSolver
 {
-    class ParseExpressionException : Exception
+    public class ParseExpressionException : Exception
     {
         public ParseExpressionException(string message) : base (message)
         { }

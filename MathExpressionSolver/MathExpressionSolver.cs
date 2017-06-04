@@ -1,13 +1,12 @@
-﻿using HomeWorkUtils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HomeWork4
+namespace MathExpressionSolver
 {
-    class MathExpressionSolver
+    public class MathExpressionSolve
     {
         private string expression;
         private IMathOperation[] availableOperations = new IMathOperation[]
@@ -15,7 +14,7 @@ namespace HomeWork4
             new Addition(), new Subtraction(), new Multiplication(), new Division()
         };
 
-        public MathExpressionSolver(string expression)
+        public MathExpressionSolve(string expression)
         {
             this.expression = expression;
         }

@@ -53,9 +53,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HomeWorkUtils\HomeWorkUtils.csproj">
+    <ProjectReference Include="..\MathExpressionSolver\MathExpressionSolver.csproj">
       <Project>{19d6244c-e0a7-42d2-9efd-fab0e271b0af}</Project>
-      <Name>HomeWorkUtils</Name>
+      <Name>MathExpressionSolver</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

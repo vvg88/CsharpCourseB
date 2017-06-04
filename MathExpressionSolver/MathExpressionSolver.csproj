@@ -7,8 +7,8 @@
     <ProjectGuid>{19D6244C-E0A7-42D2-9EFD-FAB0E271B0AF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HomeWorkUtils</RootNamespace>
-    <AssemblyName>HomeWorkUtils</AssemblyName>
+    <RootNamespace>MathExpressionSolver</RootNamespace>
+    <AssemblyName>MathExpressionSolver</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -43,10 +43,14 @@
     <Compile Include="Addition.cs" />
     <Compile Include="Division.cs" />
     <Compile Include="IMathOperation.cs" />
+    <Compile Include="MathExpressionParser.cs" />
+    <Compile Include="MathExpressionSolver.cs" />
     <Compile Include="MathOperation.cs" />
     <Compile Include="MathOperationResult.cs" />
     <Compile Include="Multiplication.cs" />
+    <Compile Include="ParseExpressionException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SolveExpressionException.cs" />
     <Compile Include="Subtraction.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

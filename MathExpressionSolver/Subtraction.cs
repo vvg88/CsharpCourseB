@@ -4,20 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HomeWorkUtils
+namespace MathExpressionSolver
 {
-    public class Division : IMathOperation
+    public class Subtraction : IMathOperation
     {
         public char OparationChar { get; }
 
-        public Division()
+        public Subtraction()
         {
-            OparationChar = '/';
+            OparationChar = '-';
         }
 
         public double RunOperation(double leftOp, double rightOp)
         {
-            return leftOp / rightOp;
+            return leftOp - rightOp;
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MathExpressionSolver;
 
 namespace HomeWork4
 {
@@ -13,7 +14,7 @@ namespace HomeWork4
             do
             {
                 Console.WriteLine("Введите выражение:");
-                var expressionSolver = new MathExpressionSolver(Console.ReadLine());
+                var expressionSolver = new MathExpressionSolve(Console.ReadLine());
                 try
                 {
                     Console.WriteLine($"Результат выражения: {expressionSolver.SolveExpression()}");
@@ -27,6 +28,10 @@ namespace HomeWork4
                 {
                     Console.WriteLine($"При решении выражения возникло исключение: {exc.Message}");
                     continue;
+                }
+                catch (Exception exc)
+                {
+                    Console.WriteLine($"Возникло необработанное исключение: {exc.Message}");
                 }
 
                 Console.WriteLine("\nПродолжить: Enter\nВыйти: 'q'");

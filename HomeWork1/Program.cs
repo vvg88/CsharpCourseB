@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HomeWorkUtils;
+using MathExpressionSolver;
 
 namespace HomeWork1
 {
@@ -22,30 +22,24 @@ namespace HomeWork1
             do
             {
                 Console.WriteLine("Введите выражение:");
-                var inputedString = Console.ReadLine();
-                inputedString = new StringBuilder(inputedString).Replace(" ", string.Empty)     // Удалить пробелы, заменить точки на запятые
-                                                                .Replace(".", ",").ToString();
-                var availableOpsSymbs = availableOperations.Select(mathOp => mathOp.OparationChar).ToArray();
-                if (CheckExpression(inputedString, availableOpsSymbs))
+                var expressionSolver = new MathExpressionSolve(Console.ReadLine());
+                try
                 {
-                    try
-                    {
-                        var parsedExpression = ParseExpression(inputedString);
-                        var result = SolveExpWithBrackets(parsedExpression);
-
-                        if (!double.IsNaN(result))
-                            Console.WriteLine(inputedString + $" = {result}");
-                        else
-                            Console.WriteLine("В расчете возникла ошибка!");
-                    }
-                    catch (Exception exc)
-                    {
-                        Console.WriteLine("В процессе расчета возникло исключение: " + exc.Message);
-                    }
+                    Console.WriteLine($"Результат выражения: {expressionSolver.SolveExpression()}");
                 }
-                else
+                catch (ParseExpressionException exc)
                 {
-                    Console.WriteLine("Введено неверное выражение!");
+                    Console.WriteLine($"При парсинге выражения возникло исключение: {exc.Message}");
+                    continue;
+                }
+                catch (SolveExpressionException exc)
+                {
+                    Console.WriteLine($"При решении выражения возникло исключение: {exc.Message}");
+                    continue;
+                }
+                catch (Exception exc)
+                {
+                    Console.WriteLine($"Возникло необработанное исключение: {exc.Message}");
                 }
                 Console.WriteLine("\nПродолжить: Enter\nВыйти: 'q'");
             }
