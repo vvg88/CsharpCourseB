@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HomeWork1_On2
 {
@@ -10,13 +6,13 @@ namespace HomeWork1_On2
     {
         static void Main(string[] args)
         {
-            double[] array = new double[] { 1, 2, 3, 4, 5 };
+            double[] array = { 1, 2, 3, 4, 5 };
             Console.Write("Исходный массив: ");
             foreach (var item in array)
                 Console.Write($"{item} ");
             Console.WriteLine($"\nДлина массива: {array.Length}\n");
 
-            int iterationsCount = 0;
+            int iterationsCount;
             var doubleArray = On2Method(array, out iterationsCount);
             Console.WriteLine("Полученный массив:");
             for (int i = 0; i < doubleArray.GetLength(0); i++)

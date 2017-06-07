@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HomeWork3
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            var myList = new MyList<string>(new string[] { "Элемент 1", "Элемент 2", "Элемент 3" });
+            var myList = new MyList<string>(new[] { "Элемент 1", "Элемент 2", "Элемент 3" });
             myList.ItemAdding += (s, e) => Console.WriteLine($"Перед добавлением элемента: {e.Item}");
             myList.ItemAdded += (s, e) => Console.WriteLine($"Элемент {e.Item} добавлен.");
 
@@ -31,8 +28,8 @@ namespace HomeWork3
             Console.WriteLine($"Список содержит {myList.Count} элементов.");
             Console.WriteLine($"Список доступен {(myList.IsReadOnly ? "только для чтения" : "для чтения и записи")}.");
 
-            myList.ListClearing += (s, e) => Console.WriteLine($"Перед очисткой списка.");
-            myList.ListCleared += (s, e) => Console.WriteLine($"Список очищен.");
+            myList.ListClearing += (s, e) => Console.WriteLine("Перед очисткой списка.");
+            myList.ListCleared += (s, e) => Console.WriteLine("Список очищен.");
             myList.Clear();
         }
     }

@@ -1,9 +1,5 @@
 ﻿using Microsoft.CSharp.RuntimeBinder;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HomeWork2
 {
@@ -16,11 +12,11 @@ namespace HomeWork2
         /// <summary>
         /// Координата X
         /// </summary>
-        public T X { get; private set; }
+        public T X { get; }
         /// <summary>
         /// Координата Y
         /// </summary>
-        public T Y { get; private set; }
+        public T Y { get; }
         /// <summary>
         /// Длина вектора
         /// </summary>

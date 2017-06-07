@@ -2,14 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HomeWork3
 {
     public class MyList<T> : ICollection<T>
     {
-        private List<T> internalList;
+        private readonly List<T> internalList;
 
         /// <summary>
         /// Событие добавления нового элемента в список
@@ -46,18 +44,12 @@ namespace HomeWork3
         /// <summary>
         /// Число элементов в списке
         /// </summary>
-        public int Count
-        {
-            get { return internalList.Count; }
-        }
+        public int Count => internalList.Count;
 
         /// <summary>
         /// Признак, что список доступен только для чтения
         /// </summary>
-        public bool IsReadOnly
-        {
-            get { return (internalList as ICollection<T>).IsReadOnly; }
-        }
+        public bool IsReadOnly => (internalList as ICollection<T>).IsReadOnly;
 
         /// <summary>
         /// Добавить новый элемент в список
@@ -83,7 +75,7 @@ namespace HomeWork3
             var evArg = OnListClearing();
             if (evArg.Cancel)
             {
-                Console.WriteLine($"Очистка списка отменена!");
+                Console.WriteLine("Очистка списка отменена!");
                 return;
             }
             internalList.Clear();
@@ -135,7 +127,7 @@ namespace HomeWork3
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return this.GetEnumerator();
+            return GetEnumerator();
         }
 
         protected virtual ItemMovingEventArgs<T> OnItemAdding(T item)

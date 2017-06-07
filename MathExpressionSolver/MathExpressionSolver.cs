@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MathExpressionSolver
 {
     public class MathExpressionSolve
     {
-        private string expression;
-        private IMathOperation[] availableOperations = new IMathOperation[]
+        private readonly string expression;
+        private readonly IMathOperation[] availableOperations = 
         {
             new Addition(), new Subtraction(), new Multiplication(), new Division()
         };
@@ -25,30 +23,30 @@ namespace MathExpressionSolver
         /// <returns> Результат выражения </returns>
         public double SolveExpression()
         {
-            var expression = ParseExpression();
+            var expressn = ParseExpression();
             var openBracket = new { Indx = 0, IsFound = false };
-            while (expression.Contains('(') || expression.Contains(')'))
+            while (expressn.Contains('(') || expressn.Contains(')'))
             {
-                for (int i = 0; i < expression.Count; i++)
+                for (int i = 0; i < expressn.Count; i++)
                 {
-                    if (expression[i] is char)
+                    if (expressn[i] is char)
                     {
-                        if ((char)expression[i] == '(')
+                        if ((char)expressn[i] == '(')
                         {
                             openBracket = new { Indx = i, IsFound = true };
                         }
-                        if ((char)expression[i] == ')' && openBracket.IsFound)
+                        if ((char)expressn[i] == ')' && openBracket.IsFound)
                         {
-                            var expressionInBrackets = expression.GetRange(openBracket.Indx + 1, i - openBracket.Indx - 1);
+                            var expressionInBrackets = expressn.GetRange(openBracket.Indx + 1, i - openBracket.Indx - 1);
                             var expressionResult = SolveExpressionNoBrackets(expressionInBrackets);
-                            expression[openBracket.Indx] = new MathOperationResult(expressionResult);
-                            expression.RemoveRange(openBracket.Indx + 1, i - openBracket.Indx);
+                            expressn[openBracket.Indx] = new MathOperationResult(expressionResult);
+                            expressn.RemoveRange(openBracket.Indx + 1, i - openBracket.Indx);
                             openBracket = new { Indx = 0, IsFound = false };
                         }
                     }
                 }
             }
-            return SolveExpressionNoBrackets(expression);
+            return SolveExpressionNoBrackets(expressn);
         }
 
         private List<object> ParseExpression()
@@ -75,7 +73,7 @@ namespace MathExpressionSolver
             {
                 try
                 {
-                    var exprResult = expression[0] is MathOperationResult ? (expression[0] as MathOperationResult).Result : (double)expression[0];
+                    var exprResult = (expression[0] as MathOperationResult)?.Result ?? (double)expression[0];
                     return exprResult;
                 }
                 catch (Exception exc)
@@ -115,16 +113,15 @@ namespace MathExpressionSolver
             var opIndx = expression.IndexOf(operation);
             var leftOp = expression[opIndx - 1] as MathOperationResult;
             var rightOp = expression[opIndx + 1] as MathOperationResult;
-            MathOperationResult newMathOperation;
 
             if (operation == null)
-                throw new SolveExpressionException($"Опереация не определена!");
+                throw new SolveExpressionException("Опереация не определена!");
             if (leftOp == null)
                 throw new SolveExpressionException($"Левый опереанд {expression[opIndx - 1]} не определен!");
             if (rightOp == null)
                 throw new SolveExpressionException($"Правый опереанд {expression[opIndx + 1]} не определен!");
 
-            newMathOperation = new MathOperation(leftOp, rightOp, operation);
+            MathOperationResult newMathOperation = new MathOperation(leftOp, rightOp, operation);
             expression[opIndx - 1] = newMathOperation;
             expression.Remove(operation);
             expression.Remove(rightOp);

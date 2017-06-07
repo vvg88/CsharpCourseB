@@ -1,22 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MathExpressionSolver
+﻿namespace MathExpressionSolver
 {
     public class MathOperationResult
     {
-        private double result;
-        public virtual double Result
-        {
-            get { return result; }
-        }
+        public virtual double Result { get; }
 
         public MathOperationResult(double result)
         {
-            this.result = result;
+            Result = result;
         }
     }
 }

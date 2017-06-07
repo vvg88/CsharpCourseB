@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HomeWork2
 {
@@ -16,9 +13,9 @@ namespace HomeWork2
         /// <summary>
         /// Сгенерированные векторы
         /// </summary>
-        private List<Vector<T>> vectors;
+        private readonly List<Vector<T>> vectors;
 
-        private Random randomGen = new Random();
+        private readonly Random randomGen = new Random();
 
         /// <summary>
         /// Конструктор генератора
@@ -54,7 +51,7 @@ namespace HomeWork2
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return this.GetEnumerator();
+            return GetEnumerator();
         }
     }
 }

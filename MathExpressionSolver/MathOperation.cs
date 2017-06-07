@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MathExpressionSolver
+﻿namespace MathExpressionSolver
 {
     public class MathOperation : MathOperationResult
     {
@@ -14,10 +8,7 @@ namespace MathExpressionSolver
 
         public IMathOperation Operation { get; }
 
-        public override double Result
-        {
-            get { return Operation.RunOperation(LeftOperand, RightOperand); }
-        }
+        public override double Result => Operation.RunOperation(LeftOperand, RightOperand);
 
         public MathOperation(MathOperationResult leftOp, MathOperationResult rightOp, IMathOperation mathOp) : base(0)
         {
