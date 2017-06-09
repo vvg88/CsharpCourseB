@@ -16,6 +16,7 @@ namespace HomeWork5
                 Clear();
                 foreach (var shape in shapes)
                 {
+                    (shape as IMovableShape)?.Move();
                     shape.Draw(Ticks);
                 }
 

@@ -15,7 +15,7 @@ namespace HomeWork5
 
         public override void Draw(int ticks)
         {
-            if (++X > 70)
+            if (++X > Console.WindowWidth - 2)
             {
                 X = 10;
             }

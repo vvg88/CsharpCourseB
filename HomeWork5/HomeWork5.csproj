@@ -44,6 +44,10 @@
   <ItemGroup>
     <Compile Include="AnyStar.cs" />
     <Compile Include="Engine2D.cs" />
+    <Compile Include="IMovableShape.cs" />
+    <Compile Include="MovableSquare.cs" />
+    <Compile Include="MovableTriangle.cs" />
+    <Compile Include="MoveDirection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shape.cs" />

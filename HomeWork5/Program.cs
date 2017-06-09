@@ -18,6 +18,8 @@ namespace HomeWork5
                     new Star(10, 15, ConsoleColor.Red),
                     new Square(5, 18, 3, ConsoleColor.Cyan),
                     new Triangle(15, 18, 6), 
+                    new MovableSquare(50, 20, 3, MoveDirection.ToBottom), 
+                    new MovableTriangle(30, 10, 5, MoveDirection.ToRight, ConsoleColor.Green), 
                 });
 
             Console.Read();
