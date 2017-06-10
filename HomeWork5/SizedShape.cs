@@ -10,7 +10,8 @@ namespace HomeWork5
     {
         public uint Size { get; }
 
-        public SizedShape(int x, int y, uint size, ConsoleColor color = ConsoleColor.White) : base(x, y, color)
+        protected SizedShape(int x, int y, uint size, ConsoleColor color = ConsoleColor.White)
+            : base(x, y, color)
         {
             Size = size;
         }

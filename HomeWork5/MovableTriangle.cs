@@ -6,45 +6,29 @@ using System.Threading.Tasks;
 
 namespace HomeWork5
 {
-    class MovableTriangle : Triangle, IMovableShape
+    class MovableTriangle : MovableSizedShape
     {
-        public MoveDirection MoveDirection { get; private set; }
+        private readonly uint width;
+        private readonly uint heigt;
 
-        public MovableTriangle(int x, int y, uint size, MoveDirection moveDirection, ConsoleColor color = ConsoleColor.White) : base(x, y, size, color)
+        public MovableTriangle(int x, int y, uint size, MoveDirection moveDirection,
+            ConsoleColor color = ConsoleColor.White)
+            : base(x, y, size, moveDirection, color)
         {
-            MoveDirection = moveDirection;
+            width = Size;
+            heigt = width % 2 == 0 ? width / 2 : (width + 1) / 2;
         }
 
-        public void Move()
-        {
-            CheckWindowBorderCrossing();
-            switch (MoveDirection)
-            {
-                case MoveDirection.ToRight:
-                    X += 1;
-                    break;
-                case MoveDirection.ToTop:
-                    Y -= 1;
-                    break;
-                case MoveDirection.ToLeft:
-                    X -= 1;
-                    break;
-                case MoveDirection.ToBottom:
-                    Y += 1;
-                    break;
-            }
-        }
-
-        private void CheckWindowBorderCrossing()
+        protected override void CheckWindowBorderCrossing()
         {
             switch (MoveDirection)
             {
                 case MoveDirection.ToRight:
-                    if (X + 1 + Size > Console.WindowWidth - 1)
+                    if (X + Size + 1 > Console.WindowWidth - 1)
                         MoveDirection = MoveDirection.ToLeft;
                     break;
                 case MoveDirection.ToTop:
-                    if (Y - Size < 0)
+                    if (Y - heigt < 0)
                         MoveDirection = MoveDirection.ToBottom;
                     break;
                 case MoveDirection.ToLeft:
@@ -55,6 +39,17 @@ namespace HomeWork5
                     if (Y + 1 > Console.WindowHeight - 1)
                         MoveDirection = MoveDirection.ToTop;
                     break;
+            }
+        }
+
+        public override void Draw(int ticks)
+        {
+            for (int i = 0; i < heigt; i++)
+            {
+                for (int j = 0 + i; j < width - i; j++)
+                {
+                    Engine2D.SetPixel(X + j, Y - i, Color);
+                }
             }
         }
     }

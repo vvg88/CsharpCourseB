@@ -6,41 +6,18 @@ using System.Threading.Tasks;
 
 namespace HomeWork5
 {
-    class MovableSquare : Square, IMovableShape
+    class MovableSquare : MovableSizedShape
     {
-        public MoveDirection MoveDirection { get; private set; }
+        public MovableSquare(int x, int y, uint size, MoveDirection moveDirection, ConsoleColor color = ConsoleColor.White)
+            : base(x, y, size, moveDirection, color)
+        { }
 
-        public MovableSquare(int x, int y, uint size, MoveDirection moveDirection, ConsoleColor color = ConsoleColor.White) : base(x, y, size, color)
-        {
-            MoveDirection = moveDirection;
-        }
-
-        public void Move()
-        {
-            CheckWindowBorderCrossing();
-            switch (MoveDirection)
-            {
-                case  MoveDirection.ToRight:
-                    X += 1;
-                    break;
-                case  MoveDirection.ToTop:
-                    Y -= 1;
-                    break;
-                case  MoveDirection.ToLeft:
-                    X -= 1;
-                    break;
-                case  MoveDirection.ToBottom:
-                    Y += 1;
-                    break;
-            }
-        }
-
-        private void CheckWindowBorderCrossing()
+        protected override void CheckWindowBorderCrossing()
         {
             switch (MoveDirection)
             {
                 case MoveDirection.ToRight:
-                    if (X + Size > Console.WindowWidth - 1)
+                    if (X + Size + 1 > Console.WindowWidth - 1)
                         MoveDirection = MoveDirection.ToLeft;
                     break;
                 case MoveDirection.ToTop:
@@ -52,9 +29,20 @@ namespace HomeWork5
                         MoveDirection = MoveDirection.ToRight;
                     break;
                 case MoveDirection.ToBottom:
-                    if (Y + Size > Console.WindowHeight)
+                    if (Y + 1 > Console.WindowHeight - 1)
                         MoveDirection = MoveDirection.ToTop;
                     break;
+            }
+        }
+
+        public override void Draw(int ticks)
+        {
+            for (int i = 0; i < Size; i++)
+            {
+                for (int j = 0; j < Size; j++)
+                {
+                    Engine2D.SetPixel(X + i, Y - j, Color);
+                }
             }
         }
     }
