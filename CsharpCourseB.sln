@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWork1", "HomeWork1\HomeWork1.csproj", "{A7604C9A-DBD7-4ED5-9015-DB074E318B71}"
 EndProject
@@ -11,11 +11,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWork3", "HomeWork3\Home
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWork4", "HomeWork4\HomeWork4.csproj", "{0BDD5971-EB27-46F5-BCCF-2EF25BF82ED5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWork1_On2", "HomeWork1\HomeWork1_On2\HomeWork1_On2.csproj", "{D46B26DA-6924-4DB5-9935-CF5F351E68D6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathExpressionSolver", "MathExpressionSolver\MathExpressionSolver.csproj", "{19D6244C-E0A7-42D2-9EFD-FAB0E271B0AF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWork5", "HomeWork5\HomeWork5.csproj", "{CAEFC0A5-B0FF-4B4F-81F0-1B4299F1C335}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWork1_On2", "HomeWork1\HomeWork1_On2\HomeWork1_On2.csproj", "{D46B26DA-6924-4DB5-9935-CF5F351E68D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWork6", "HomeWork6\HomeWork6.csproj", "{9735277B-7FC4-4E7B-8708-3909DAC3A847}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +41,6 @@ Global
 		{0BDD5971-EB27-46F5-BCCF-2EF25BF82ED5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BDD5971-EB27-46F5-BCCF-2EF25BF82ED5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BDD5971-EB27-46F5-BCCF-2EF25BF82ED5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D46B26DA-6924-4DB5-9935-CF5F351E68D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D46B26DA-6924-4DB5-9935-CF5F351E68D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D46B26DA-6924-4DB5-9935-CF5F351E68D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D46B26DA-6924-4DB5-9935-CF5F351E68D6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{19D6244C-E0A7-42D2-9EFD-FAB0E271B0AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{19D6244C-E0A7-42D2-9EFD-FAB0E271B0AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19D6244C-E0A7-42D2-9EFD-FAB0E271B0AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,6 +49,14 @@ Global
 		{CAEFC0A5-B0FF-4B4F-81F0-1B4299F1C335}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAEFC0A5-B0FF-4B4F-81F0-1B4299F1C335}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAEFC0A5-B0FF-4B4F-81F0-1B4299F1C335}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D46B26DA-6924-4DB5-9935-CF5F351E68D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D46B26DA-6924-4DB5-9935-CF5F351E68D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D46B26DA-6924-4DB5-9935-CF5F351E68D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D46B26DA-6924-4DB5-9935-CF5F351E68D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9735277B-7FC4-4E7B-8708-3909DAC3A847}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9735277B-7FC4-4E7B-8708-3909DAC3A847}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9735277B-7FC4-4E7B-8708-3909DAC3A847}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9735277B-7FC4-4E7B-8708-3909DAC3A847}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
