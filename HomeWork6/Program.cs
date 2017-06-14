@@ -12,15 +12,17 @@ namespace HomeWork6
         {
             // Рассчитать факториал разными способами
             ExecuteAndShowTime(() =>
-                Console.WriteLine(Factorials.FactMul(10)));
+                Console.WriteLine(Factorials.FactMul(5)));
             ExecuteAndShowTime(() =>
-                Console.WriteLine(Factorials.FactMul2(10)));
+                Console.WriteLine(Factorials.FactMul2(5)));
 
             // Перевернуть слова разными способами
             ExecuteAndShowTime(() =>
                 Console.WriteLine(StringWordsReverser.ReverseWords2("one_two,_.three!.,_four____five!!!")));
             ExecuteAndShowTime(() =>
                 Console.WriteLine(StringWordsReverser.ReverseWords("one_two,_.three!.,_four____five!!!")));
+            ExecuteAndShowTime(() =>
+                Console.WriteLine(StringWordsReverser.ReverseWords3("one_two,_.three!.,_four____five!!!")));
 
             // Сложить два больших целых неотрицательных числа
             Console.Write("Введите целое неотрицательное слагаемое 1: ");

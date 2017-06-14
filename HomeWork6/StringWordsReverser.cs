@@ -57,5 +57,26 @@ namespace HomeWork6
                 dstStr.Append(srcStr[i]);
             }
         }
+
+        public static string ReverseWords3(string srcStr)
+        {
+            var dstStr = new StringBuilder();
+            var buffStr = new List<char>(srcStr.Length);
+            for (int srcIndx = 0; srcIndx < srcStr.Length; srcIndx++)
+            {
+                if (char.IsLetter(srcStr[srcIndx]))
+                {
+                    buffStr.Add(srcStr[srcIndx]);
+                }
+                else
+                {
+                    buffStr.Reverse();
+                    dstStr.Append(buffStr.ToArray());
+                    dstStr.Append(srcStr[srcIndx]);
+                    buffStr.Clear();
+                }
+            }
+            return dstStr.ToString();
+        }
     }
 }

@@ -15,14 +15,12 @@ namespace HomeWork6
         /// <returns> Произведение факториалов </returns>
         public static double FactMul(uint n)
         {
-            var factStack = new Stack<double>();
-            double result = 1.0;    // Результат расчета
-            factStack.Push(1);
+            var result = 1.0;    // Результат расчета
+            var factResult = 1.0;
             for (uint i = 2; i <= n; i++)
             {
-                var prevFact = factStack.Pop();
-                factStack.Push(prevFact * i);   // Рассчитать факториал
-                result *= prevFact * i;         // Умножить результат на рассчитанный факториал
+                factResult *= i;              // Рассчитать факториал
+                result *= factResult;         // Умножить результат на рассчитанный факториал
             }
             return result;
         }
@@ -35,14 +33,12 @@ namespace HomeWork6
         /// <returns></returns>
         public static double FactMul2(int n)
         {
-            var factStack = new Stack<double>();
-            factStack.Push(1);
+            var result = 1.0;
             for (int i = 2; i < n; i++)
             {
-                var prevVal = factStack.Pop();
-                factStack.Push(prevVal * Math.Pow(i, n - i + 1));
+                result *= Math.Pow(i, n - i + 1);
             }
-            return factStack.Pop() * n;
+            return result * n;
         }
     }
 }
