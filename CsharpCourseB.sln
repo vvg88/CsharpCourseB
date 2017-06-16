@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWork1", "HomeWork1\HomeWork1.csproj", "{A7604C9A-DBD7-4ED5-9015-DB074E318B71}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWork6", "HomeWork6\HomeWork6.csproj", "{9735277B-7FC4-4E7B-8708-3909DAC3A847}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWork7", "HomeWork7\HomeWork7.csproj", "{74C4AAEA-E573-4398-9384-3D303718CCED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shapes", "Shapes\Shapes.csproj", "{556948B9-194A-4378-A6F7-C7295BC346D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{74C4AAEA-E573-4398-9384-3D303718CCED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74C4AAEA-E573-4398-9384-3D303718CCED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74C4AAEA-E573-4398-9384-3D303718CCED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{556948B9-194A-4378-A6F7-C7295BC346D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{556948B9-194A-4378-A6F7-C7295BC346D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{556948B9-194A-4378-A6F7-C7295BC346D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{556948B9-194A-4378-A6F7-C7295BC346D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

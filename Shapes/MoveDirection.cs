@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HomeWork5
+namespace Shapes
 {
-    public interface IMovableShape
+    public enum MoveDirection
     {
-        void Move();
+        ToTop,
+        ToBottom,
+        ToLeft,
+        ToRight
     }
 }

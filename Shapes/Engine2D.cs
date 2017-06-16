@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HomeWork5
+namespace Shapes
 {
-    static class Engine2D
+    public static class Engine2D
     {
         public static void Draw(IEnumerable<Shape> shapes)
         {
