@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HomeWork5
 {
-    abstract class MovableSizedShape : SizedShape, IMovableShape
+    public abstract class MovableSizedShape : SizedShape, IMovableShape
     {
         public MoveDirection MoveDirection { get; protected set; }
 

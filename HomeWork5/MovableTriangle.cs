@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HomeWork5
 {
-    class MovableTriangle : MovableSizedShape
+    public class MovableTriangle : MovableSizedShape
     {
         private readonly uint width;
         private readonly uint heigt;

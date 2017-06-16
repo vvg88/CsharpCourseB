@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HomeWork5
 {
-    class Square : SizedShape
+    public class Square : SizedShape
     {
         public Square(int x, int y, uint size, ConsoleColor color = ConsoleColor.White) : base(x, y, size, color)
         {

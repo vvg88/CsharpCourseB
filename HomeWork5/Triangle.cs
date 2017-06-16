@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HomeWork5
 {
-    class Triangle : SizedShape
+    public class Triangle : SizedShape
     {
         private readonly uint width;
         private readonly uint heigt;

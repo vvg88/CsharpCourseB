@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HomeWork5
 {
-    class MovableSquare : MovableSizedShape
+    public class MovableSquare : MovableSizedShape
     {
         public MovableSquare(int x, int y, uint size, MoveDirection moveDirection, ConsoleColor color = ConsoleColor.White)
             : base(x, y, size, moveDirection, color)

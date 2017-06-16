@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HomeWork5
 {
-    abstract class Shape
+    public abstract class Shape
     {
         public int X { get; set; }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HomeWork5
 {
-    class Star : Shape
+    public class Star : Shape
     {
         public Star(int x, int y, ConsoleColor color = ConsoleColor.Blue)
             : base(x, y, color)

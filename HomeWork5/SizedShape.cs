@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HomeWork5
 {
-    abstract class SizedShape : Shape
+    public abstract class SizedShape : Shape
     {
         public uint Size { get; }
 

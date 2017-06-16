@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HomeWork5
 {
-    enum MoveDirection
+    public enum MoveDirection
     {
         ToTop,
         ToBottom,

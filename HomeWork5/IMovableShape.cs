@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HomeWork5
 {
-    interface IMovableShape
+    public interface IMovableShape
     {
         void Move();
     }
