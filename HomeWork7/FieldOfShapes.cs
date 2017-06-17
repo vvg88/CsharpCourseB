@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HomeWork5;
+using Shapes;
 
 namespace HomeWork7
 {
@@ -19,6 +19,11 @@ namespace HomeWork7
                 sFactory.CreateSizedShape(15, 20, 3, ConsoleColor.Magenta),
                 sFactory.CreateMovableShape(25, 30, 5, MoveDirection.ToRight, ConsoleColor.Red)
             };
+        }
+
+        public FieldOfShapes(ShapesBuilder shapesBldr)
+        {
+            Shapes = shapesBldr.Shapes;
         }
     }
 }

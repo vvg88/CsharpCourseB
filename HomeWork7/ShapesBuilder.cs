@@ -9,8 +9,15 @@ namespace HomeWork7
 {
     abstract class ShapesBuilder
     {
-        protected List<Shape> shapes;
+        protected List<Shape> shapes = new List<Shape>();
         public IEnumerable<Shape> Shapes => shapes;
+
+        public ShapesBuilder()
+        {
+            BuildShapes();
+            BuildSizedShapes();
+            BuildSizedMovableShapes();
+        }
 
         protected abstract void BuildShapes();
         protected abstract void BuildSizedShapes();

@@ -47,6 +47,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShapesBuilder.cs" />
+    <Compile Include="ShapesBuilder1.cs" />
+    <Compile Include="ShapesBuilder2.cs" />
     <Compile Include="ShapesFactory.cs" />
     <Compile Include="ShapesFactory1.cs" />
     <Compile Include="ShapesFactory2.cs" />

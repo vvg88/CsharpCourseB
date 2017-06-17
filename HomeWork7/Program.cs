@@ -13,8 +13,11 @@ namespace HomeWork7
             var shapesField1 = new FieldOfShapes(new ShapesFactory1());
             var shapesField2 = new FieldOfShapes(new ShapesFactory2());
 
+            var shapesField3 = new FieldOfShapes(new ShapesBuilder1());
+            var shapesField4 = new FieldOfShapes(new ShapesBuilder2());
+
             var singleEngine = SingleToneEngine2D.Instance;
-            singleEngine.Draw(shapesField2.Shapes);
+            singleEngine.Draw(shapesField4.Shapes);
         }
     }
 }
