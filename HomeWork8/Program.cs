@@ -1,4 +1,6 @@
-﻿using HomeWork8.Mediator;
+﻿using HomeWork8.Decorator;
+using HomeWork8.Mediator;
+using Shapes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +14,18 @@ namespace HomeWork8
         static void Main(string[] args)
         {
             var singleEngine = SingleToneEngine2D.Instance;
-            var squares = new List<CollisionsAvoidSquare>();
-            var mediator = new CollisionsAvoidMediator(squares);
-            squares.AddRange(new[]
+            var notCollisSquares = new List<CollisionsAvoidSquare>();
+            var mediator = new CollisionsAvoidMediator(notCollisSquares);
+            notCollisSquares.AddRange(new[]
             {
                 new CollisionsAvoidSquare(5, 5, 3, new HorisontalMoveStrategy(), mediator),
-                new CollisionsAvoidSquare(15, 15, 3, new VerticalMoveStrategy(), mediator)
+                new CollisionsAvoidSquare(10, 10, 3, new VerticalMoveStrategy(), mediator),
+                new CollisionsAvoidSquare(5, 20, 5, new HorisontalMoveStrategy(), mediator),
+                new CollisionsAvoidSquare(20, 20, 2, new VerticalMoveStrategy(), mediator, ConsoleColor.Yellow),
+                new SquareDecorator(new CollisionsAvoidSquare(10, 15, 2, new HorisontalMoveStrategy(), mediator))
             });
-            singleEngine.Draw(squares);
+            //var squares = new List<StrategyMovableSquare>
+            singleEngine.Draw(notCollisSquares);
             //singleEngine.Draw(new[]
             //{
             //    new StrategyMovableSquare(5, 5, 3, new HorisontalMoveStrategy()),

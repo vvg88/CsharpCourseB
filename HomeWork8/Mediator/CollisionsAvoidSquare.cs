@@ -19,18 +19,27 @@ namespace HomeWork8.Mediator
             colAvoidMediator = mediator;
         }
 
+        public CollisionsAvoidSquare()
+            : base(0, 0, 0, new HorisontalMoveStrategy())
+        { }
+
         public bool Notify(StrategyMovableSquare anotherSquare)
         {
-            switch(anotherSquare.DirectionMove)
+            var tmpSquare = new Square(anotherSquare.X, anotherSquare.Y, anotherSquare.Size);
+            switch (anotherSquare.DirectionMove)
             {
                 case MoveDirection.ToLeft:
-                    return X + Size < anotherSquare.X - 1;
+                    tmpSquare.X--;
+                    return DefineCollision(tmpSquare)/*X + Size < anotherSquare.X - 1*/;
                 case MoveDirection.ToRight:
-                    return anotherSquare.X + anotherSquare.Size + 1 < X;
+                    tmpSquare.X++;
+                    return DefineCollision(tmpSquare)/*anotherSquare.X + anotherSquare.Size + 1 < X*/;
                 case MoveDirection.ToTop:
-                    return anotherSquare.Y - anotherSquare.Size - 1 < Y;
+                    tmpSquare.Y--;
+                    return DefineCollision(tmpSquare)/*anotherSquare.Y - anotherSquare.Size - 1 < Y*/;
                 case MoveDirection.ToBottom:
-                    return anotherSquare.Y + 1 < Y - Size;
+                    tmpSquare.Y++;
+                    return DefineCollision(tmpSquare)/*anotherSquare.Y + 1 < Y - Size*/;
             }
             return false;
         }
@@ -38,6 +47,28 @@ namespace HomeWork8.Mediator
         public override void Move()
         {
             moveStrategy.Move(this, colAvoidMediator.Send(this));
+        }
+
+        private bool DefineCollision(Square square)
+        {
+            var sqrPoints = new List<Tuple<int, int>>();
+            for (int i = 0; i < Size; i++)
+                for (int j = 0; j < Size; j++)
+                    sqrPoints.Add(new Tuple<int, int>(X + i, Y - j));
+
+            var anotherSqrPoints = new List<Tuple<int, int>>();
+            for (int i = 0; i < square.Size; i++)
+                for (int j = 0; j < square.Size; j++)
+                    anotherSqrPoints.Add(new Tuple<int, int>(square.X + i, square.Y - j));
+
+            foreach(var anSqrPoint in anotherSqrPoints)
+            {
+                if (sqrPoints.Any(point => point.Item1 == anSqrPoint.Item1 && point.Item2 == anSqrPoint.Item2))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

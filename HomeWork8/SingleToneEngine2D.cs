@@ -28,7 +28,7 @@ namespace HomeWork8
                     shape.Draw(Ticks);
                 }
 
-                Thread.Sleep(250);
+                Thread.Sleep(100);
                 Ticks++;
             }
         }

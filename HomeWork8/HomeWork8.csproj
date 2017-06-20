@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Decorator\SquareDecorator.cs" />
     <Compile Include="Mediator\CollisionsAvoidMediator.cs" />
     <Compile Include="Mediator\CollisionsAvoidSquare.cs" />
     <Compile Include="Strategy\HorisontalMoveStrategy.cs" />

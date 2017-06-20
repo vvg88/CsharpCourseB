@@ -18,12 +18,12 @@ namespace HomeWork8.Mediator
 
         public bool Send(CollisionsAvoidSquare square)
         {
-            var isCollision = true;
             foreach(var sqr in squares)
             {
-                isCollision &= sqr.Notify(square);
+                if (sqr != square && sqr.Notify(square))
+                    return true;
             }
-            return isCollision;
+            return false;
         }
     }
 }
