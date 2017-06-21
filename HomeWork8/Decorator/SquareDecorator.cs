@@ -15,17 +15,15 @@ namespace HomeWork8.Decorator
         public SquareDecorator(CollisionsAvoidSquare sqr)
         {
             square = sqr;
+            X = sqr.X;
+            Y = sqr.Y;
+            Size = sqr.Size;
         }
 
         public override void Draw(int ticks)
         {
             square.Color = (ConsoleColor)colorRandomiser.Next(0, 15);
             square.Draw(ticks);
-        }
-
-        public override void Move()
-        {
-            square.Move();
         }
     }
 }

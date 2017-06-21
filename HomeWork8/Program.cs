@@ -16,13 +16,13 @@ namespace HomeWork8
             var singleEngine = SingleToneEngine2D.Instance;
             var notCollisSquares = new List<CollisionsAvoidSquare>();
             var mediator = new CollisionsAvoidMediator(notCollisSquares);
-            notCollisSquares.AddRange(new[]
+            notCollisSquares.AddRange(new CollisionsAvoidSquare[]
             {
-                new CollisionsAvoidSquare(5, 5, 3, new HorisontalMoveStrategy(), mediator),
-                new CollisionsAvoidSquare(10, 10, 3, new VerticalMoveStrategy(), mediator),
-                new CollisionsAvoidSquare(5, 20, 5, new HorisontalMoveStrategy(), mediator),
-                new CollisionsAvoidSquare(20, 20, 2, new VerticalMoveStrategy(), mediator, ConsoleColor.Yellow),
-                new SquareDecorator(new CollisionsAvoidSquare(10, 15, 2, new HorisontalMoveStrategy(), mediator))
+                new StrategyMovableSquare(5, 5, 3, mediator, new HorisontalMoveStrategy()), 
+                new StrategyMovableSquare(10, 10, 3, mediator, new VerticalMoveStrategy()),
+                new StrategyMovableSquare(5, 20, 5, mediator, new HorisontalMoveStrategy()),
+                new StrategyMovableSquare(20, 20, 2, mediator, new VerticalMoveStrategy(), ConsoleColor.Yellow),
+                new SquareDecorator(new CollisionsAvoidSquare(10, 15, 2, mediator))
             });
             //var squares = new List<StrategyMovableSquare>
             singleEngine.Draw(notCollisSquares);

@@ -8,7 +8,7 @@ namespace Shapes
 {
     public abstract class SizedShape : Shape
     {
-        public uint Size { get; }
+        public uint Size { get; protected set; }
 
         protected SizedShape(int x, int y, uint size, ConsoleColor color = ConsoleColor.White)
             : base(x, y, color)
