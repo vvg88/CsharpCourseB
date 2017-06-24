@@ -7,46 +7,25 @@ using System.Threading.Tasks;
 
 namespace HomeWork8.Mediator
 {
-    class CollisionsAvoidSquare : StrategyMovableSquare
+    class CollisionsAvoidSquare : Square
     {
-        private CollisionsAvoidMediator colAvoidMediator;
+        protected readonly CollisionsAvoidMediator colAvoidMediator;
 
-        public CollisionsAvoidSquare(int x, int y, uint size, MoveStrategy moveStrategy,
+        public CollisionsAvoidSquare(int x, int y, uint size,
             CollisionsAvoidMediator mediator,
             ConsoleColor color = ConsoleColor.White)
-            : base(x, y, size, moveStrategy, color)
+            : base(x, y, size, color)
         {
             colAvoidMediator = mediator;
         }
 
         public CollisionsAvoidSquare()
-            : base(0, 0, 0, new HorisontalMoveStrategy())
+            : base(0, 0, 0)
         { }
 
-        public bool Notify(StrategyMovableSquare anotherSquare)
+        public bool Notify(Square anotherSquare)
         {
-            var tmpSquare = new Square(anotherSquare.X, anotherSquare.Y, anotherSquare.Size);
-            switch (anotherSquare.DirectionMove)
-            {
-                case MoveDirection.ToLeft:
-                    tmpSquare.X--;
-                    return DefineCollision(tmpSquare)/*X + Size < anotherSquare.X - 1*/;
-                case MoveDirection.ToRight:
-                    tmpSquare.X++;
-                    return DefineCollision(tmpSquare)/*anotherSquare.X + anotherSquare.Size + 1 < X*/;
-                case MoveDirection.ToTop:
-                    tmpSquare.Y--;
-                    return DefineCollision(tmpSquare)/*anotherSquare.Y - anotherSquare.Size - 1 < Y*/;
-                case MoveDirection.ToBottom:
-                    tmpSquare.Y++;
-                    return DefineCollision(tmpSquare)/*anotherSquare.Y + 1 < Y - Size*/;
-            }
-            return false;
-        }
-
-        public override void Move()
-        {
-            moveStrategy.Move(this, colAvoidMediator.Send(this));
+            return DefineCollision(anotherSquare);
         }
 
         private bool DefineCollision(Square square)

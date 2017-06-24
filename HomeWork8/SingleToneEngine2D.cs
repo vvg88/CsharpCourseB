@@ -17,15 +17,18 @@ namespace HomeWork8
 
         private SingleToneEngine2D() { }
 
-        public void Draw(IEnumerable<StrategyMovableSquare> shapes)
+        public void Draw(IEnumerable<Square> shapes)
         {
             while (true)
             {
                 Clear();
                 foreach (var shape in shapes)
                 {
-                    shape.Move();
                     shape.Draw(Ticks);
+                }
+                foreach (var mSquare in shapes.OfType<StrategyMovableSquare>())
+                {
+                    mSquare.Move();
                 }
 
                 Thread.Sleep(100);
