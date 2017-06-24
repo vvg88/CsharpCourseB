@@ -24,13 +24,7 @@ namespace HomeWork8
                 new CollisionsAvoidSquare(20, 20, 2, new VerticalMoveStrategy(), mediator, ConsoleColor.Yellow),
                 new SquareDecorator(new CollisionsAvoidSquare(10, 15, 2, new HorisontalMoveStrategy(), mediator))
             });
-            //var squares = new List<StrategyMovableSquare>
             singleEngine.Draw(notCollisSquares);
-            //singleEngine.Draw(new[]
-            //{
-            //    new StrategyMovableSquare(5, 5, 3, new HorisontalMoveStrategy()),
-            //    new StrategyMovableSquare(15, 15, 3, new VerticalMoveStrategy())
-            //});
         }
     }
 }
