@@ -27,16 +27,15 @@ namespace HomeWork9
         {
             // Получить слова запроса
             var queryWords = query.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-
             var docsCnt = DocCollection.Count();
             // Высчитать idf для слов запроса
             var quWrdsIdfs = queryWords.Select(quWrd =>
             {
                 var nWrd = DocCollection.Count(doc => doc.Words.Any(wrd => wrd.Text.Equals(quWrd, StringComparison.CurrentCultureIgnoreCase)));
                 var idf = Math.Log10((docsCnt - nWrd + 0.5) / (nWrd + 0.5));
-                return new { queryWrd = quWrd, queryWrdIdf = idf < 0 ? idf * -1 : idf };
+                return new { queryWrd = quWrd, queryWrdIdf = Math.Abs(idf)};
             });
-            
+
             // Отранжировать документы
             var rankedDocs = DocCollection.Select(doc =>
             {

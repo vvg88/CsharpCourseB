@@ -9,9 +9,7 @@ namespace HomeWork9
     public class Document
     {
         public int Id { get; set; }
-
         public string Text { get; set; }
-
         public virtual ICollection<Word> Words { get; set; }
 
         public Document(string text)
