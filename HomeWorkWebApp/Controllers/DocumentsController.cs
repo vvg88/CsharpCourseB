@@ -17,13 +17,25 @@ namespace HomeWorkWebApp.Controllers
         // GET: Documents
         public ActionResult Index(string searchString)
         {
-            ViewBag.Title = "Documents";
-            ViewBag.Message = "searchString";
+            ViewBag.Title = "Документы";
+            ViewBag.Message = searchString;
+            var docs = db.Documents.ToList();
+            foreach (var doc in docs)
+            {
+                doc.Text = doc.Text.Replace("\n", "</br>");
+            }
             if (string.IsNullOrEmpty(searchString))
                 return View(db.Documents.ToList());
 
             var bm25 = new Bm25(db.Documents.ToList());
-            return View(bm25.RankDocsByQuery(searchString).ToList());
+            var foundDocs = bm25.RankDocsByQuery(searchString);
+
+            foreach (var doc in foundDocs)
+            {
+                doc.Text = doc.Text.Replace($" {searchString}", $" <b><mark>{searchString}</mark></b>");
+            }
+
+            return View(foundDocs.ToList());
         }
 
         // GET: Documents/Details/5
@@ -56,7 +68,7 @@ namespace HomeWorkWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Documents.Add(document);
+                db.Documents.Add(new Document(document.Text));
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

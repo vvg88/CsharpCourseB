@@ -51,6 +51,7 @@ namespace HomeWorkWebApp.Models
                 return new { Doc = doc, Score = score };
             })
             .OrderByDescending(scoredDoc => scoredDoc.Score)    // Отсортировать документы по score
+            .Where(scoredDoc => scoredDoc.Score > 0)
             .Select(scoredDoc => scoredDoc.Doc);
 
             return rankedDocs;
